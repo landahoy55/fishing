@@ -164,7 +164,7 @@ export default class SessionForm extends React.Component {
     render() {
         return (
             <div>
-                <p>Currently... {this.state.temp}°C. {this.state.weatherDesc}</p>
+                <p>Currently.. {this.state.temp}°C. {this.state.weatherDesc}</p>
                 <p>The last tide was a {this.state.tideStatus} at {this.state.tideTime}</p>
                 <p>Number caught: {this.state.numberCaught}</p>    
                 
