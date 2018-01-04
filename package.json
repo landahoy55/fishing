@@ -1,0 +1,49 @@
+{
+  "name": "fishing",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-cli": "6.24.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "bootstrap": "^3.3.7",
+    "google-map-react": "^0.26.0",
+    "jest-junit": "^3.4.1",
+    "live-server": "^1.2.0",
+    "moment": "^2.20.1",
+    "node-sass": "4.5.3",
+    "normalize.css": "7.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-modal": "2.2.2",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "4.1.2",
+    "react-scripts": "1.0.17",
+    "react-test-renderer": "^16.2.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "6.0.6",
+    "socket.io-client": "^2.0.4",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "validator": "8.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "test:ci": "react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-junit"
+  },
+  "jest": {
+    "coverageReporters": ["lcov", "text"]
+  },
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "output": "test/junit.xml",
+    "classNameTemplate": "{classname} - {title}",
+    "titleTemplate": "{classname} - {title}",
+    "ancestorSeparator": " > ",
+    "usePathForSuiteName": "true"
+  }
+}
