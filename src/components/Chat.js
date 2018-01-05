@@ -13,7 +13,7 @@ export default class Chat extends React.Component {
             messages: [],
             noCaught: 0
         }
-        console.log(props);
+        //console.log(props);
     };
 
     //numberCaught is displaying an update here.
@@ -26,11 +26,11 @@ export default class Chat extends React.Component {
 
     if (this.props.numberCaught !== prevProps.numberCaught) {
         console.log('Changed props');
-        const body = `${this.props.numberCaught} ${this.props.species} were just caught in ${this.props.location}`;
-        console.log(body);
+        const body = `${this.props.numberCaught} ${this.props.species} just caught in ${this.props.location}`;
+        //console.log(body);
         const message = {
             body,
-            from: 'Me'
+            from: 'Fisher'
         }
         this.setState({ messages: [message, ...this.state.messages]});
         this.socket.emit('message', body);
@@ -59,11 +59,12 @@ export default class Chat extends React.Component {
         
         const body = e.target.value;
 
+        //on enter, and when body has value
         if (e.keyCode === 13 && body) {
             console.log(body);
             const message = {
                 body,
-                from: 'Me'
+                from: 'Fisher'
             }
             this.setState({ messages: [message, ...this.state.messages]});
             this.socket.emit('message', body);
@@ -83,17 +84,25 @@ export default class Chat extends React.Component {
         // }
     }
 
+    //messages stateless component created by mapping over the messages state
     render(){
+
         const messages = this.state.messages.map((message, index) => {
             const divStyle = {listStyleType: 'none'}
             return <li style={divStyle} key={index}><b>{message.from} </b>{message.body}</li>
         });
 
         return (
-            <div>
-                <h1>CHAT</h1>
-                <input type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit} /> 
-                {messages}
+            <div className="container">
+                <div className="col-md-4">
+                    <br />
+                    <input className="form-control"type='text' placeholder='Enter a message...' onKeyUp={this.handleSubmit} /> 
+                    <br />
+
+                    {messages}
+                
+                    <br />
+                </div>
             </div>
         )
     }

@@ -18,6 +18,11 @@ export class EditSession extends React.Component {
         return (
             <div>
                 Editing session with id of {this.props.match.params.id}
+                <button onClick={
+                    this.onRemove   
+                    //props.dispatch(startRemoveSession({id: props.session.id}));
+                    //props.history.push('/');
+                }>Delete</button>
                 <SessionForm 
                 session={this.props.session}
                 // lat={props.session.lat} 
@@ -29,11 +34,6 @@ export class EditSession extends React.Component {
                     props.history.push('/');
                 }}
                 />
-                <button onClick={
-                    this.onRemove   
-                    //props.dispatch(startRemoveSession({id: props.session.id}));
-                    //props.history.push('/');
-                }>Delete</button>
             </div>  
         );
     }

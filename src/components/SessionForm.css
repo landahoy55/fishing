@@ -1,0 +1,21 @@
+.saveButton {
+    background-color: #00A878; /* Green */
+    border-radius: 0 !important;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px!important;
+}
+
+.logButton {
+    background-color: #4D7EA8; /* Green */
+    border-radius: 0 !important;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px!important;
+}

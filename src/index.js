@@ -34,7 +34,11 @@ store.subscribe(()=>{
 
 const jsx = (
     <Provider store={store}>
-        <AppRouter />
+        <div className="container">
+            <div className="">
+             <AppRouter />
+            </div>
+        </div>
     </Provider> 
 );
 

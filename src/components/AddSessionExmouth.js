@@ -24,7 +24,8 @@ export class AddSession extends React.Component {
   render(){
     return (
       <div>
-        <h1>Add Session - Exmouth</h1>
+      <h2>Session - Exmouth</h2>
+      <hr />
         <SessionForm
           //weather={props.weather.color}
           lat={50.6200} 

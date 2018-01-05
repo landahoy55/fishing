@@ -7,9 +7,14 @@ import { setLocationFilter } from '../actions/filters'
 //dispatch is on props thanks to connect.
 const ExpenseListFilters = (props) => (
     <div>
-        <input type="text" value={props.filters.location} onChange={(e) => {
-            props.dispatch(setLocationFilter(e.target.value));
-        }}/> 
+        <div className="container"> 
+            <div className="row">
+                <h2>Previous Sessions</h2>
+                <input type="text" placeholder="Filter by location" value={props.filters.location} onChange={(e) => {
+                    props.dispatch(setLocationFilter(e.target.value));
+                }}/> 
+            </div>
+        </div>
     </div>
 );
 

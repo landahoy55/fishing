@@ -5,10 +5,16 @@ import './Header.css';
 //<NavLink to="/session" activeClassName="btn btn-success"><button type="button" className="btn btn-primary">Start Session</button></NavLink>
 const Header = () => (
     <header>
-        <h1>Gone Fishing</h1>
-        <NavLink to="/" exact={true}><button className="btn btn-primary" type="button">Home</button></NavLink>
-        <NavLink to="/location"><button type="button">Start Session</button></NavLink>
-        <NavLink to="/live"><button type="button">Live Sessions</button></NavLink>
+            <div className="conatiner"> 
+                <div className="row">
+                    <h1>Gone Fishing</h1>
+                </div>
+                <div className="row">
+                    <NavLink to="/" exact={true}><button className="btn headerButtons" type="button">Home</button></NavLink>
+                    <NavLink to="/location"><button className="btn headerButtons" type="button">Start Session</button></NavLink>
+                    <NavLink to="/live"><button className="btn headerButtons" type="button">Live Updates</button></NavLink>
+                </div>
+            </div>
     </header>
 );
 
