@@ -13,9 +13,9 @@ import { getFilteredSessionsByLocation } from './selectors/sessions';
 
 //CSS -  bring in styles.css or component css.
 //webpack builds css
-import 'normalize.css/normalize.css';
+//import 'normalize.css/normalize.css';
 //import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './css/main.css';
+//import './css/main.css';
 
 const store = configureStore();
 
