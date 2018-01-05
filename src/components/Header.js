@@ -6,7 +6,7 @@ import './Header.css';
 const Header = () => (
     <header>
         <h1>Gone Fishing</h1>
-        <NavLink to="/" exact={true}><button type="button">Home</button></NavLink>
+        <NavLink to="/" exact={true}><button className="btn btn-primary" type="button">Home</button></NavLink>
         <NavLink to="/location"><button type="button">Start Session</button></NavLink>
         <NavLink to="/live"><button type="button">Live Sessions</button></NavLink>
     </header>
