@@ -25,7 +25,8 @@ export default class SessionForm extends React.Component {
             tideStatus: props.session ? props.session.tide : '',
             temp: props.session ? props.session.temperature : '',
             species: 'mackerel',
-            catchToLogCount: 0
+            catchToLogCount: 0,
+            probability: 0
        }
        //console.log('session form state lats');
        //console.log(this.state.lat);
@@ -94,6 +95,7 @@ export default class SessionForm extends React.Component {
 
     //request weather, use props passed down if new session or state if editing
     componentDidMount() {
+
         const lat= this.props.lat || this.state.lat; 
         const long= this.props.long || this.state.long;
         //`String text ${expression}`
@@ -104,37 +106,65 @@ export default class SessionForm extends React.Component {
         
         //only run if new session
         if ( !this.props.weatherDesc ){
-            // axios.get( `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/091b10e504d40b509cc0809dfdba898f/${lat},${long}` )
-            //     .then( ( res ) => {
-            //         //when returns run a render
-            //         this.setState({
-            //             weatherDesc: res.data.minutely.summary,
-            //             temp: Math.round((res.data.currently.temperature - 32) * .5556)
-            //         });
-            //         //console.log(state.test);
-            //     })
-            //     .catch( ( err ) => {
-            //         this.setState({
-            //             weatherDesc: 'Oops',
-            //             temp: 'Ooops'
-            //         });
-            //     });
+            axios.get( `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/091b10e504d40b509cc0809dfdba898f/${lat},${long}` )
+                .then( ( res ) => {
+                    //when returns run a render
+                    this.setState({
+                        weatherDesc: res.data.minutely.summary,
+                        temp: Math.round((res.data.currently.temperature - 32) * .5556)
+                    });
+                    //console.log(state.test);
 
-                // axios.get( `https://www.worldtides.info/api?extremes&lat=50.461921&lon=-3.525315&key=4da92c80-97d1-4aec-ba57-856f2bc66532` )
-                // .then( ( res ) => {
-                //     //when returns run a render
-                //     this.setState({
-                //         tideTime: res.data.extremes[0].date.substr(11, 5),
-                //         tideStatus: res.data.extremes[0].type.toLowerCase()
-                //     });
-                //     //console.log(state.test);
-                // })
-                // .catch( ( err ) => {
-                //     this.setState({
-                //         tideTime: 'Oops',
-                //         tideStatus: 'Oops'
-                //     });
-                // });
+                    axios.get( `https://www.worldtides.info/api?extremes&lat=50.461921&lon=-3.525315&key=4da92c80-97d1-4aec-ba57-856f2bc66532` )
+                    .then( ( res ) => {
+                        //when returns run a render
+                        this.setState({
+                            tideTime: res.data.extremes[0].date.substr(11, 5),
+                            tideStatus: res.data.extremes[0].type.toLowerCase()
+                        });
+                        //console.log(state.test);
+                        // axios.post('/user', {
+                        //     firstName: 'Fred',
+                        //     lastName: 'Flintstone'
+                        //   })
+                        //   .then(function (response) {
+                        //     console.log(response);
+                        //   })
+                        //   .catch(function (error) {
+                        //     console.log(error);
+                        //   });
+
+                        axios.post('https://stormy-temple-81926.herokuapp.com/probability', {
+                            "month":moment().format('M'),
+                            "tide":this.state.tideStatus,
+                            "location":this.props.location,
+                            "temp":this.state.temp
+                        }).then((res) => {
+                            console.log("LOAD",moment().format('M'), this.state.tideStatus, this.props.location, this.state.temp )
+                            console.log(res.data[0])
+                            let prob = res.data[0] * 100;
+                            this.setState({
+                                probability: prob.toFixed(2)
+                            });
+                        }).catch((err) => {
+                            console.log(err)
+                        });
+
+                    })
+                    .catch( ( err ) => {
+                        this.setState({
+                            tideTime: 'Oops',
+                            tideStatus: 'Oops'
+                        });
+                    });
+
+                })
+                .catch( ( err ) => {
+                    this.setState({
+                        weatherDesc: 'Oops',
+                        temp: 'Ooops'
+                    });
+                });    
             }
     }
 
@@ -170,6 +200,7 @@ export default class SessionForm extends React.Component {
                     <br />
                 <p>The temperature is currrently {this.state.temp}°C. {this.state.weatherDesc}</p>
                 <p>The last tide was a {this.state.tideStatus} at {this.state.tideTime}</p>
+                <h4>Chance of catching: {this.state.probability}%</h4>
                     <br />
                 <h4>Catch Count: {this.state.numberCaught ? this.state.numberCaught : '0' }</h4>
                     <br />

@@ -84,7 +84,6 @@ export const startAddSession = (sessionData = {}) => {
 
 
 //Refactored, no longer being used. All go through action above.
-
 //Add session for Plymouth - including default values.
 export const addSessionPlymouth = (
     {
