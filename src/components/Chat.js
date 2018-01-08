@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import io from 'socket.io-client';
 
 export default class Chat extends React.Component {
@@ -21,7 +20,7 @@ export default class Chat extends React.Component {
     componentWillUpdate(){
         console.log('num caught:', this.props.numberCaught);
     };
-
+    
    componentDidUpdate(prevProps) {
 
     if (this.props.numberCaught !== prevProps.numberCaught) {
@@ -49,12 +48,13 @@ export default class Chat extends React.Component {
    };
 
     componentDidMount() {
-        this.socket = io('http://localhost:3001/');
+        this.socket = io('https://stormy-temple-81926.herokuapp.com/');
         this.socket.on('message', message => {
             this.setState({ messages: [message, ...this.state.messages]});
         })
     }
 
+    //called each time a key is pressed
     handleSubmit = (e) => {
         
         const body = e.target.value;

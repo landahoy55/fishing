@@ -32,7 +32,8 @@ store.subscribe(()=>{
     console.log(store.getState())
 });
 
-const jsx = (
+//Provider allows access to the store to any components within
+const initalApp = (
     <Provider store={store}>
         <div className="container">
             <div className="">
@@ -48,7 +49,7 @@ ReactDOM.render(<p>Loading fishy friends</p>, document.getElementById('app'));
 
 //when dispatch is called, then show app!
 store.dispatch(startGetSessions()).then( () => {
-    ReactDOM.render(jsx, document.getElementById('app'));
+    ReactDOM.render(initalApp, document.getElementById('app'));
 });
 
 

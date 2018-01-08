@@ -26,7 +26,8 @@ export default class SessionForm extends React.Component {
             temp: props.session ? props.session.temperature : '',
             species: 'mackerel',
             catchToLogCount: 0,
-            probability: 0
+            probability: 0,
+            numberToLog: 0
        }
        //console.log('session form state lats');
        //console.log(this.state.lat);
@@ -54,6 +55,7 @@ export default class SessionForm extends React.Component {
 
         if(this.state.numberCaught === 0 || !this.state.numberCaught){
             console.log('nothing caught - submitted');
+            console.log('TIME....', this.state.sessionStart)
             //submit with 0, set didCatch to false, set endtime
             //create session onSubmit prop that is passed down
             this.props.onSubmit({
@@ -74,6 +76,7 @@ export default class SessionForm extends React.Component {
         } else {
 
             console.log('fish caught - submitted');
+            console.log('TIME....', this.state.sessionStart)
             //submit numberCaught and set didCatch to true
             //create session onSubmit prop that is passed down
             this.props.onSubmit({
@@ -115,7 +118,7 @@ export default class SessionForm extends React.Component {
                     });
                     //console.log(state.test);
 
-                    axios.get( `https://www.worldtides.info/api?extremes&lat=50.461921&lon=-3.525315&key=4da92c80-97d1-4aec-ba57-856f2bc66532` )
+                    axios.get( `https://www.worldtides.info/api?extremes&lat=${lat}&lon=${long}&key=4da92c80-97d1-4aec-ba57-856f2bc66532` )
                     .then( ( res ) => {
                         //when returns run a render
                         this.setState({
@@ -144,7 +147,7 @@ export default class SessionForm extends React.Component {
                             console.log(res.data[0])
                             let prob = res.data[0] * 100;
                             this.setState({
-                                probability: prob.toFixed(2)
+                                probability: prob.toFixed(0)
                             });
                         }).catch((err) => {
                             console.log(err)
@@ -168,6 +171,7 @@ export default class SessionForm extends React.Component {
             }
     }
 
+    //destructuring - property names match
     numberToLogChange = (e) => {
         const catchToLogCount = e.target.value;
         this.setState(() => ({ catchToLogCount }));
@@ -183,10 +187,11 @@ export default class SessionForm extends React.Component {
         const species = this.state.species;
         //take number value - set state
         const numberToLogStr = this.state.catchToLogCount;
-        const numberToLog = parseInt(numberToLogStr)
+        const numberToLog = parseInt(numberToLogStr);
         this.setState((prevState) => ({
             numberCaught: prevState.numberCaught + numberToLog,
-            species: species
+            species: species,
+            numberToLog
         }));
         console.log('**************click', species, numberToLog);
     };
@@ -198,9 +203,13 @@ export default class SessionForm extends React.Component {
                
                 <h4>Session Summary</h4>
                     <br />
-                <p>The temperature is currrently {this.state.temp}°C. {this.state.weatherDesc}</p>
-                <p>The last tide was a {this.state.tideStatus} at {this.state.tideTime}</p>
-                <h4>Chance of catching: {this.state.probability}%</h4>
+                        {this.state.note ? <h4>Updating...</h4> : 
+                        <div>
+                        <p>The temperature is currrently {this.state.temp}°C. {this.state.weatherDesc}</p>
+                        <p>The nearest is a {this.state.tideStatus} at {this.state.tideTime}</p>
+                        <h4>Chance of catching: {this.state.probability}%</h4>
+                        </div>
+                        }
                     <br />
                 <h4>Catch Count: {this.state.numberCaught ? this.state.numberCaught : '0' }</h4>
                     <br />
@@ -255,6 +264,7 @@ export default class SessionForm extends React.Component {
                                     className="form-control"
                                     type="number"
                                     placeholder="Caught"
+                                    disabled
                                     value={this.state.numberCaught}
                                     onChange={this.catchCountChange.bind(this)}
                                 />
@@ -269,7 +279,7 @@ export default class SessionForm extends React.Component {
                 <br/>
                 <h5>Your catches are shared with others, and shown below</h5>
                 <p>Show your support to others by writing a message</p>
-                <Chat numberCaught={this.state.numberCaught} species={this.state.species} location={this.props.location}/>
+                <Chat numberCaught={this.state.numberToLog} species={this.state.species} location={this.props.location}/>
                 <SimpleMap lat={this.props.lat || this.state.lat} long={this.props.long || this.state.long}/>
             </div>
         )

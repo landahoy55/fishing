@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 const NotFound = () => (
     <div>
         404! - <Link to="/">Go home</Link>
-        <button type="button" className="btn btn-primary">Primary</button>
     </div>
 );
 

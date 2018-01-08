@@ -1,4 +1,4 @@
-//Using higher order componenet pattern to provide access to the store, by modifying component
+//Using higher order component pattern to provide access to the store, by modifying component
 import React from 'react';
 import { connect } from 'react-redux';
 import SessionListItem from './SessionListItem';
