@@ -5,9 +5,7 @@ import { startAddSession } from '../actions/sessions-api';
 
 //import * as weatherActions from '../actions/weather';
 
-//import weather action - running multiple times. does this need to be changed?
 //send result to form.
-
 //onsubmit prop added to session form - this component is triggering the submit.
 
 export class AddSession extends React.Component {

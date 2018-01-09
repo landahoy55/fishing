@@ -206,7 +206,7 @@ export default class SessionForm extends React.Component {
                         {this.state.note ? <h4>Editing session...</h4> : 
                         <div>
                         <p>The temperature is currrently {this.state.temp}°C. {this.state.weatherDesc}</p>
-                        <p>The nearest is a {this.state.tideStatus} at {this.state.tideTime}</p>
+                        <p>The nearest tide is a {this.state.tideStatus} at {this.state.tideTime}</p>
                         <h4>Chance of catching: {this.state.probability}%</h4>
                         </div>
                         }
