@@ -7,7 +7,7 @@ const Header = () => (
     <header>
             <div className="conatiner"> 
                 <div className="row">
-                    <h1>Gone Fishing</h1>
+                    <h1>Gone Fishing - Demo</h1>
                 </div>
                 
                 <div className="row">
