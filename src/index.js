@@ -28,6 +28,7 @@ const store = configureStore();
 // const visibleSessions = getFilteredSessionsByLocation(state.sessions, state.filters);
 //console.log(store.getState());
 
+//not used.
 store.subscribe(()=>{
     console.log(store.getState())
 });

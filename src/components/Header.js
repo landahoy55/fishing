@@ -9,6 +9,7 @@ const Header = () => (
                 <div className="row">
                     <h1>Gone Fishing</h1>
                 </div>
+                
                 <div className="row">
                     <NavLink to="/" exact={true}><button className="btn headerButtons" type="button">Home</button></NavLink>
                     <NavLink to="/location"><button className="btn headerButtons" type="button">Start Session</button></NavLink>

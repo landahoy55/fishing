@@ -202,17 +202,9 @@ export const startGetSessions = () => {
                     ...session
                 });
             })
-
-            //console.log('array');
-            //console.log(sessions);
             
-            dispatch(getSessions(sessions));
-
-            //console.log(res.status);
-            //console.log(res.statusText);
-            //console.log(JSON.stringify(res.headers));
-            //console.log(axios.defaults.headers);
-            
+            //After retrieving sessions dispatch through 'get sessions' action in reducer
+            dispatch(getSessions(sessions));            
         })
     }
 };

@@ -203,7 +203,7 @@ export default class SessionForm extends React.Component {
                
                 <h4>Session Summary</h4>
                     <br />
-                        {this.state.note ? <h4>Updating...</h4> : 
+                        {this.state.note ? <h4>Editing session...</h4> : 
                         <div>
                         <p>The temperature is currrently {this.state.temp}°C. {this.state.weatherDesc}</p>
                         <p>The nearest is a {this.state.tideStatus} at {this.state.tideTime}</p>
