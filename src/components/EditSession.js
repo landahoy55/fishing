@@ -24,15 +24,15 @@ export class EditSession extends React.Component {
                     //props.history.push('/');
                 }>Delete</button>
                 <SessionForm 
-                session={this.props.session}
-                // lat={props.session.lat} 
-                // long={props.session.long} 
-                onSubmit={(session) => {
-                    //console.log('Update', session);
-                    //call and return home
-                    props.dispatch(editSession(this.props.session.id, session));
-                    props.history.push('/');
-                }}
+                    session={this.props.session}
+                    // lat={props.session.lat} 
+                    // long={props.session.long} 
+                    onSubmit={(session) => {
+                        //console.log('Update', session);
+                        //call and return home
+                        props.dispatch(editSession(this.props.session.id, session));
+                        props.history.push('/');
+                    }}
                 />
             </div>  
         );
